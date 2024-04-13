@@ -45,8 +45,7 @@
 1. VSCode でリモート接続している状態で、以下のコマンドを実行する。
 
    ```shell-session
-   $ cd app_client
-   $ npm run build
+   $ npm run build // buildディレクトリが存在しない場合は実行
    $ npm start
    ```
 
