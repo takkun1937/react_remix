@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  app_client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app_client
+    init: true
+    ports:
+      - 15173:5173
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/root/app_client
+    working_dir: /root/app_client
+    user: root

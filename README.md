@@ -1,36 +1,55 @@
-# Welcome to Remix + Vite!
+# react_remix
 
-📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/future/vite) for details on supported features.
+## 1. 構成
 
-## Development
-
-Run the Vite dev server:
-
-```shellscript
-npm run dev
+```shell-session
+.
+|-- app_client // プロジェクト
+|   |-- app // ソースコード
+|   |-- public // リソースファイル
+|   |-- .gitignore // gitignore
+|   |-- package.json // 依存関係構成・コマンド設定ファイル
+|   |-- README.md
+|   |-- tsconfig.json // TypeScriptの設定ファイル
+|   `-- vite.config.ts // Viteの設定ファイル
+|-- .devcontainer.json // 開発環境構成ファイル
+|-- Dockerfile // 開発環境コンテナ構成ファイル
+|-- README.md
+`-- docker-compose.yml // 開発環境コンテナ起動コマンド定義ファイル
 ```
 
-## Deployment
+## 2. 開発環境構築
 
-First, build your app for production:
+### 2.1. 開発準備
 
-```sh
-npm run build
-```
+1. 以下をインストール
 
-Then run the app in production mode:
+   - [Visual Studio Code](https://code.visualstudio.com/download)
+     - Visual Studio Code で「[Remote Development](https://code.visualstudio.com/docs/remote/remote-overview)」の拡張機能をインストール
+   - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
-```sh
-npm start
-```
+2. 本プロジェクトのルートディレクトリに移動し、以下のコマンドを実行する。
 
-Now you'll need to pick a host to deploy it to.
+   ```shell-session
+   $ docker compose up -d
+   ```
 
-### DIY
+3. VSCode のフッターメニュー(ステータスバー)の「リモートウィンドウを開きます」をクリックする。
 
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
+4. メニューから「コンテナで再度開く」を選択する。
 
-Make sure to deploy the output of `npm run build`
+## 3. 実行方法
 
-- `build/server`
-- `build/client`
+### 3.1. 実行方法
+
+1. VSCode でリモート接続している状態で、以下のコマンドを実行する。
+
+   ```shell-session
+   $ cd app_client
+   $ npm run build
+   $ npm start
+   ```
+
+## 4. リンク
+
+- [React Remix プロジェクト作成参考リンク](https://remix.run/docs/en/main/tutorials/jokes)
