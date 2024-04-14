@@ -4,14 +4,12 @@
 
 ```shell-session
 .
-|-- app_client // プロジェクト
-|   |-- app // ソースコード
-|   |-- public // リソースファイル
-|   |-- .gitignore // gitignore
-|   |-- package.json // 依存関係構成・コマンド設定ファイル
-|   |-- README.md
-|   |-- tsconfig.json // TypeScriptの設定ファイル
-|   `-- vite.config.ts // Viteの設定ファイル
+|-- app // ソースコード
+|-- public // リソースファイル
+|-- .gitignore // gitignore
+|-- package.json // 依存関係構成・コマンド設定ファイル
+|-- tsconfig.json // TypeScriptの設定ファイル
+|-- vite.config.ts // Viteの設定ファイル
 |-- .devcontainer.json // 開発環境構成ファイル
 |-- Dockerfile // 開発環境コンテナ構成ファイル
 |-- README.md
@@ -45,10 +43,12 @@
 1. VSCode でリモート接続している状態で、以下のコマンドを実行する。
 
    ```shell-session
-   $ npm run build // buildディレクトリが存在しない場合は実行
+   $ npm run build
    $ npm start
    ```
 
 ## 4. リンク
 
 - [React Remix プロジェクト作成参考リンク](https://remix.run/docs/en/main/tutorials/jokes)
+- [ローカライズ処理](https://react.i18next.com/guides/quick-start)
+- [Helmet（head タグ）](https://www.npmjs.com/package/react-helmet-async)
