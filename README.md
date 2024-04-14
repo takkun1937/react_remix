@@ -43,8 +43,12 @@
 1. VSCode でリモート接続している状態で、以下のコマンドを実行する。
 
    ```shell-session
+   // production
    $ npm run build
    $ npm start
+
+   // development
+   $ npm run dev
    ```
 
 ## 4. リンク
@@ -52,3 +56,4 @@
 - [React Remix プロジェクト作成参考リンク](https://remix.run/docs/en/main/tutorials/jokes)
 - [ローカライズ処理](https://react.i18next.com/guides/quick-start)
 - [Helmet（head タグ）](https://www.npmjs.com/package/react-helmet-async)
+- [Tailwind CSS](https://tailwindcss.com/docs/guides/create-react-app)
