@@ -18,10 +18,10 @@ type MainLayoutProps = {
  */
 export const MainLayout = (props: MainLayoutProps): JSX.Element => {
     return (
-        <>
+        <div className="flex flex-col h-screen">
             <HeaderLayout/>
                 {props.children}
             <FooterLayout/>
-        </>
+        </div>
     )
 }
