@@ -57,3 +57,4 @@
 - [ローカライズ処理](https://react.i18next.com/guides/quick-start)
 - [Helmet（head タグ）](https://www.npmjs.com/package/react-helmet-async)
 - [Tailwind CSS](https://tailwindcss.com/docs/guides/create-react-app)
+- [Monaco Editor](https://github.com/suren-atoyan/monaco-react#readme)
