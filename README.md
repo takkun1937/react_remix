@@ -54,7 +54,7 @@
 ## 4. リンク
 
 - [React Remix プロジェクト作成参考リンク](https://remix.run/docs/en/main/tutorials/jokes)
-- [ローカライズ処理](https://react.i18next.com/guides/quick-start)
+- [ローカライズ処理](https://github.com/sergiodxa/remix-i18next?tab=readme-ov-file)
 - [Helmet（head タグ）](https://www.npmjs.com/package/react-helmet-async)
 - [Tailwind CSS](https://tailwindcss.com/docs/guides/create-react-app)
 - [Monaco Editor](https://github.com/suren-atoyan/monaco-react#readme)
