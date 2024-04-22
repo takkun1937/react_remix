@@ -27,7 +27,7 @@ export const Editor = (
         MonacoEditor ? (<MonacoEditor
             width="50%"
             theme="vs-dark"
-            language={language || "javascript"}
+            language={language}
             defaultValue="// some comment"
             onChange={handleEditorChange}
         />) : <></>

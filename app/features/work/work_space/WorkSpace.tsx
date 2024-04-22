@@ -12,7 +12,7 @@ export const WorkSpace = (): JSX.Element => {
     
     return (
         <ContentLayout title={`${t('title.work_space')}`}>
-            <div className="grow bg-gray-100">
+            <div className="grow px-8 bg-gray-100">
                 <div className="w-full h-1/2">
                     <CodeSpace/>
                 </div>
