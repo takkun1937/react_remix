@@ -1,16 +1,15 @@
-import {JSX, useEffect, useState} from "react";
-import { EditorContentType } from "../../type";
+import {JSX, useContext, useEffect, useState} from "react";
+import { WorkSpaceContextType } from "../../type";
+import { WorkSpaceContext } from "../../providers/workSpaceProvider";
 
 /**
  * Editorのコンポーネント
  * @returns
  */
-export const Editor = (
-    {
-        language
-    }: EditorContentType
-): JSX.Element => {
+export const Editor = (): JSX.Element => {
     const [MonacoEditor, setMonacoEditor] = useState(null);
+    const workSpaceContext: WorkSpaceContextType = useContext(WorkSpaceContext);
+    const [value, setValue] = useState<string>('');
 
     // SSRのため、ダイナミックインポート
     useEffect(() => {
@@ -19,16 +18,19 @@ export const Editor = (
         });
     }, []);
 
+    // エディタのソースコード変更
     const handleEditorChange = (value: string) => {
-        console.log(value);
+        setValue(value);
+        workSpaceContext.handleEditorChange(value);
     }
     
     return (
         MonacoEditor ? (<MonacoEditor
             width="50%"
             theme="vs-dark"
-            language={language}
-            defaultValue="// some comment"
+            language={workSpaceContext.selectedLanguageOption.value}
+            defaultValue=""
+            value={value}
             onChange={handleEditorChange}
         />) : <></>
     );

@@ -1,30 +1,24 @@
-import {JSX, useState} from "react";
+import {JSX, useContext} from "react";
 import { Editor } from "./Editor";
 import { Result } from "./Result";
 import { LanguagesDropdown } from "./LanguagesDropdown";
-import { languageOptions } from "~/common/constants/constants";
+import { WorkSpaceContextType } from "../../type";
+import { WorkSpaceContext } from "../../providers/workSpaceProvider";
 
 /**
  * コードスペースのコンポーネント
  * @returns
  */
 export const CodeSpace = (): JSX.Element => {
-    const [language, setLanguage] = useState<string>(languageOptions[0].value);
-
-    const onSelectChange = (value: string) => {
-        console.log("selected Option...", value);
-        setLanguage(value);
-      };
+    const workSpaceContext: WorkSpaceContextType = useContext(WorkSpaceContext);
     
     return (
         <div className="flex flex-col w-full h-full">
             <div className="w-80 my-2 mx-4">
-                <LanguagesDropdown
-                    onSelectChange={onSelectChange}/>
+                <LanguagesDropdown/>
             </div>
             <div className="flex grow w-full">
-                <Editor
-                    language={language}/>
+                <Editor/>
                 <Result/>
             </div>
         </div>

@@ -17,7 +17,11 @@ export const handle = { i18n: ["translation"] };
 export async function loader({ request }: LoaderFunctionArgs) {
   const locale = await i18nServer.getLocale(request);
   return json(
-    { locale },
+    { locale, ENV: {
+      REACT_APP_RAPID_API_HOST: process.env.REACT_APP_RAPID_API_HOST,
+      REACT_APP_RAPID_API_KEY: process.env.REACT_APP_RAPID_API_KEY,
+      REACT_APP_RAPID_API_URL: process.env.REACT_APP_RAPID_API_URL
+    } },
     { headers: { "Set-Cookie": await localeCookie.serialize(locale) } },
   );
 }
@@ -36,6 +40,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         {children}
         <ScrollRestoration />
+        <script
+					dangerouslySetInnerHTML={{
+						__html: `window.ENV = ${JSON.stringify(loaderData?.ENV)}`,
+					}}
+				/>
         <Scripts />
       </body>
     </html>

@@ -58,3 +58,4 @@
 - [Helmet（head タグ）](https://www.npmjs.com/package/react-helmet-async)
 - [Tailwind CSS](https://tailwindcss.com/docs/guides/create-react-app)
 - [Monaco Editor](https://github.com/suren-atoyan/monaco-react#readme)
+- [axios](https://axios-http.com/docs/intro)
