@@ -18,9 +18,18 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const locale = await i18nServer.getLocale(request);
   return json(
     { locale, ENV: {
+      // judge0 API
       REACT_APP_RAPID_API_HOST: process.env.REACT_APP_RAPID_API_HOST,
       REACT_APP_RAPID_API_KEY: process.env.REACT_APP_RAPID_API_KEY,
-      REACT_APP_RAPID_API_URL: process.env.REACT_APP_RAPID_API_URL
+      REACT_APP_RAPID_API_URL: process.env.REACT_APP_RAPID_API_URL,
+      // firebase auth
+      REACT_API_KEY: process.env.REACT_API_KEY,
+      REACT_AUTH_DOMAIN: process.env.REACT_AUTH_DOMAIN,
+      REACT_PROJECT_ID: process.env.REACT_PROJECT_ID,
+      REACT_STORAGE_BUCKET: process.env.REACT_STORAGE_BUCKET,
+      REACT_MESSAGING_SENDER_ID: process.env.REACT_MESSAGING_SENDER_ID,
+      REACT_APP_ID: process.env.REACT_APP_ID,
+      REACT_MEASUREMENT_ID: process.env.REACT_MEASUREMENT_ID
     } },
     { headers: { "Set-Cookie": await localeCookie.serialize(locale) } },
   );

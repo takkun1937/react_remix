@@ -60,3 +60,4 @@
 - [Monaco Editor](https://github.com/suren-atoyan/monaco-react#readme)
 - [axios](https://axios-http.com/docs/intro)
 - [React Rnd](https://github.com/bokuweb/react-rnd)
+- [Firebase（認証機能）](https://firebase.google.com/?hl=ja)
