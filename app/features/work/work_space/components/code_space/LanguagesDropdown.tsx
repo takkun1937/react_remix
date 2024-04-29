@@ -17,7 +17,7 @@ export const LanguagesDropdown = (): JSX.Element => {
     
     return (
         <select
-            className="h-11 rounded border-solid border border-black outline-none"
+            className="w-72 min-h-11 rounded border-solid border border-black outline-none"
             defaultValue={languageOptions[0].value}
             onChange={(e) => {onSelectChange(e.target.selectedIndex)}}>
             {languageOptions.map((languageOption, index) => (

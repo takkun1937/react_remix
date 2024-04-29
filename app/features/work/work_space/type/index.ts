@@ -17,3 +17,26 @@ export type LanguageOption = {
     label: string;
     value: string;
 }
+
+/**
+ * LayoutAPIフックのタイプ
+ */
+export type LayoutContextType = {
+    rndLayout: RndLayoutType;
+    disabledResize: object;
+    enabledLeftResize: object;
+    enabledRightResize: object;
+    enabledLeftRightResize: object;
+    enabledTopResize: object;
+    handleCodeSpaceResize: (windowHeight: number, codeSpaceHeightRatioRatio: number) => void;
+}
+
+/**
+ * RND (resizable and draggable)
+ */
+export type RndLayoutType = {
+    /** windowの高さ */
+    windowHeight: number,
+    /** CodeSpaceの高さの割合 */
+    codeSpaceHeightRatio: number,
+}

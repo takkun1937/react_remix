@@ -9,7 +9,8 @@ import { WorkSpaceContext } from "../../providers/workSpaceProvider";
 export const Editor = (): JSX.Element => {
     const [MonacoEditor, setMonacoEditor] = useState(null);
     const workSpaceContext: WorkSpaceContextType = useContext(WorkSpaceContext);
-    const [value, setValue] = useState<string>('');
+    const defaultValue = '// some comment';
+    const [value, setValue] = useState<string>(defaultValue);
 
     // SSRのため、ダイナミックインポート
     useEffect(() => {
@@ -26,10 +27,9 @@ export const Editor = (): JSX.Element => {
     
     return (
         MonacoEditor ? (<MonacoEditor
-            width="50%"
             theme="vs-dark"
             language={workSpaceContext.selectedLanguageOption.value}
-            defaultValue=""
+            defaultValue={defaultValue}
             value={value}
             onChange={handleEditorChange}
         />) : <></>

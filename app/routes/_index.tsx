@@ -4,9 +4,12 @@ import { WorkSpaceProvider } from "~/features/work/work_space/providers/workSpac
 
 // パス「/」のコンポーネント
 export default function Index() {
+
   return (
     <WorkSpaceProvider>
-      <MainLayout children={<WorkSpace/>}></MainLayout>
+      <MainLayout 
+        children={<WorkSpace/>}>
+      </MainLayout>
     </WorkSpaceProvider>
   );
 }

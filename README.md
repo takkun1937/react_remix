@@ -59,3 +59,4 @@
 - [Tailwind CSS](https://tailwindcss.com/docs/guides/create-react-app)
 - [Monaco Editor](https://github.com/suren-atoyan/monaco-react#readme)
 - [axios](https://axios-http.com/docs/intro)
+- [React Rnd](https://github.com/bokuweb/react-rnd)
