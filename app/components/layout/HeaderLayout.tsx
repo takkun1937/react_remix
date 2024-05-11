@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "@remix-run/react";
 import {JSX} from "react";
 import { useTranslation } from "react-i18next";
 import { ROUTE_PATH } from "~/common/constants/constants";
+import { Button } from "../elements/Button";
 
 /**
  * ヘッダーレイアウトのコンポーネント
@@ -14,12 +15,41 @@ export const HeaderLayout = (): JSX.Element => {
 
     return (
         <div className="px-8 pt-2 bg-white">
-            <div>
-                <button
-                    className="px-1.5 py-1.5 rounded bg-green-500 text-base font-bold text-white"
+            <div className="flex justify-between">
+                <Button
+                    title={`${t('service_name')}`}
+                    className={{
+                        bgColor: 'bg-green-500',
+                        fontSize: 'text-base',
+                        fontColor: 'text-white',
+                        fontWeight: 'font-bold',
+                    }}
                     onClick={() => navigate(ROUTE_PATH.ROOT)}>
-                         {`${t('service_name')}`}
-                </button>
+                </Button>
+                <div className="flex">
+                    <Button
+                        title={`${t('button.login')}`}
+                        className={{
+                            bgColor: 'bg-white',
+                            fontSize: 'text-base',
+                            fontColor: 'text-green-700',
+                            hoverColor: 'bg-gray-100',
+                            props: 'border border-green-700 border-solid'
+                        }}
+                        onClick={() => navigate(ROUTE_PATH.LOGIN)}>
+                    </Button>
+                    <Button
+                        title={`${t('button.signup')}`}
+                        className={{
+                            bgColor: 'bg-green-700',
+                            fontSize: 'text-base',
+                            fontColor: 'text-white',
+                            hoverColor: 'bg-green-800',
+                            props: 'ml-2'
+                        }}
+                        onClick={() => navigate(ROUTE_PATH.SIGNUP)}>
+                    </Button>
+                </div>
             </div>
             <div>
                 <button 

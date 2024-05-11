@@ -3,7 +3,9 @@
  */
 export enum ROUTE_PATH {
     ROOT = '/',
-    REGISTER_WORK = '/register-work'
+    REGISTER_WORK = '/register-work',
+    LOGIN = '/login',
+    SIGNUP = '/signup'
 }
 
 /**
