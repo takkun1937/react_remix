@@ -1,7 +1,7 @@
 import { MainLayout } from '~/components/layout/MainLayout';
-import { SignUpForm } from '~/features/auth/components/SignUpForm';
+import { Auth } from '~/features/auth/auth';
 
 // パス「/signup」のコンポーネント
 export default function SignUp() {
-  return <MainLayout children={<SignUpForm />}></MainLayout>;
+  return <MainLayout children={<Auth />}></MainLayout>;
 }

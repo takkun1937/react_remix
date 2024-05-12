@@ -1,7 +1,7 @@
 import { JSX, useContext } from 'react';
 import { languageOptions } from '~/common/constants/constants';
-import { WorkSpaceContextType } from '../type';
-import { WorkSpaceContext } from '../providers/workSpaceProvider';
+import { WorkSpaceContextType } from '../../type';
+import { WorkSpaceContext } from '../../providers/workSpaceProvider';
 
 /**
  * ワークスペースのコンポーネント

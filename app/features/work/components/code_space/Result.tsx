@@ -1,6 +1,6 @@
 import { JSX, useContext, useState } from 'react';
-import { WorkSpaceContextType } from '../type';
-import { WorkSpaceContext } from '../providers/workSpaceProvider';
+import { WorkSpaceContextType } from '../../type';
+import { WorkSpaceContext } from '../../providers/workSpaceProvider';
 import axios from 'axios';
 
 /**
