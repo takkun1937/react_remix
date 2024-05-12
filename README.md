@@ -43,11 +43,14 @@
 1. VSCode でリモート接続している状態で、以下のコマンドを実行する。
 
    ```shell-session
-   // production
-   $ npm run build
+   // ビルドコマンド
+   $ npm run build:dev // development
+   $ npm run build:prd // production
+
+   // サーバー起動
    $ npm start
 
-   // development
+   // アプリ起動（開発用）
    $ npm run dev
    ```
 
@@ -61,3 +64,4 @@
 - [axios](https://axios-http.com/docs/intro)
 - [React Rnd](https://github.com/bokuweb/react-rnd)
 - [Firebase（認証機能）](https://firebase.google.com/?hl=ja)
+- [dotenv](https://github.com/motdotla/dotenv#readme)

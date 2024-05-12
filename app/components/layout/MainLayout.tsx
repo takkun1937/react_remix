@@ -1,18 +1,18 @@
-import {JSX, ReactNode} from "react";
-import { HeaderLayout } from "./HeaderLayout";
-import { FooterLayout } from "./FooterLayout";
-import { CodeSpace } from "~/features/work/work_space/components/code_space/CodeSpace";
-import { useLocation } from "@remix-run/react";
-import { ROUTE_PATH } from "~/common/constants/constants";
-import { RndLayout } from "./RndLayout";
+import { JSX, ReactNode } from 'react';
+import { HeaderLayout } from './HeaderLayout';
+import { FooterLayout } from './FooterLayout';
+import { CodeSpace } from '~/features/work/components/CodeSpace';
+import { useLocation } from '@remix-run/react';
+import { ROUTE_PATH } from '~/common/constants/constants';
+import { RndLayout } from './RndLayout';
 
 /**
  * メインレイアウトタイプ
  * @property children - ReactNode
  */
 type MainLayoutProps = {
-    children: ReactNode
-}
+  children: ReactNode;
+};
 
 /**
  * メインレイアウトのコンポーネント
@@ -20,18 +20,20 @@ type MainLayoutProps = {
  * @returns
  */
 export const MainLayout = (props: MainLayoutProps): JSX.Element => {
-    const location = useLocation();
+  const location = useLocation();
 
-    return (
-        <div className="flex flex-col h-screen">
-            <HeaderLayout/>
-                {props.children}
-            <FooterLayout/>
-            {location.pathname === ROUTE_PATH.ROOT ? (
-                <RndLayout>
-                    <CodeSpace/>
-                </RndLayout>
-            ) : <></>}
-        </div>
-    );
-}
+  return (
+    <div className='flex flex-col h-screen'>
+      <HeaderLayout />
+      {props.children}
+      <FooterLayout />
+      {location.pathname === ROUTE_PATH.ROOT ? (
+        <RndLayout>
+          <CodeSpace />
+        </RndLayout>
+      ) : (
+        <></>
+      )}
+    </div>
+  );
+};
