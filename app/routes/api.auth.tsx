@@ -4,7 +4,6 @@ import { admin } from '~/lib/firebase_admin_server';
 
 // パス「/api/auth」のエンドポイント
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  console.log(request);
   const idToken = request.headers.get('Authorization')?.split('Bearer ')[1];
 
   if (!idToken) {

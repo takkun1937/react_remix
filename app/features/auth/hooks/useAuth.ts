@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { REQUEST_PATH, STATUS_CODE } from "~/common/constants/constants";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { FirebaseErrorCode, REQUEST_PATH, STATUS_CODE } from "~/common/constants/constants";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "~/lib/firebase";
 import { useTranslation } from "react-i18next";
 import { AuthContextType } from "../type";
@@ -12,7 +12,7 @@ import axios from "axios";
  */
 export const useAuth = (): AuthContextType => {
   const {t} = useTranslation();
-  const [loginErrorMsg, setLoginErrorMsg] = useState<string>('');
+  const [authErrorMsg, setAuthErrorMsg] = useState<string>('');
 
   /**
   * メールアドレスとパスワードでFirebaseへログイン認証
@@ -23,12 +23,36 @@ export const useAuth = (): AuthContextType => {
       try {
           const userCredential = await signInWithEmailAndPassword(auth, email, password);
           const user = userCredential.user;
-          //ユーザのIDトークンを取得
           return await user.getIdToken();
-      } catch (error: any ) {
-        setLoginErrorMsg(t('error_msg.email_or_password_error') as string)
-        throw error
+      } catch (error: any) {
+        if (error.code === FirebaseErrorCode.INVALID_LOGIN_CREDENTIALS) {
+          setAuthErrorMsg(t('error_msg.email_or_password_error'));
+        } else {
+          setAuthErrorMsg(t('error_msg.failed_login'));
+        }
+        throw error;
       }
+  }
+
+  /**
+   * 新規登録
+   * @param email 
+   * @param password 
+   * @returns 
+   */
+  const signUp = async (email: string, password: string): Promise<string | undefined> => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      return await user.getIdToken();
+    } catch (error: any) {
+      if (error.code === FirebaseErrorCode.EMAIL_EXISTS) {
+        setAuthErrorMsg(t('error_msg.email_already_in_use'));
+      } else {
+        setAuthErrorMsg(t('error_msg.failed_signup'));
+      }
+      throw error;
+    }
   }
 
   /**
@@ -47,14 +71,15 @@ export const useAuth = (): AuthContextType => {
         // TODO: ローカルストレージに保存
       }
     }).catch((error) => {
-      setLoginErrorMsg(t('error_msg.failed_login') as string)
+      setAuthErrorMsg(t('error_msg.auth_error'));
       throw error;
     });
   }
 
   return {
-      loginErrorMsg,
+      authErrorMsg,
       login,
+      signUp,
       getAuthInfo
   }
 }

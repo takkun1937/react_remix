@@ -40,10 +40,10 @@ export const LoginForm = (): JSX.Element => {
       <p className='my-6 text-xl text-gray-500'>{`${t('main.login_lead')}`}</p>
       <p
         className={`p-4 rounded border bg-red-200 text-red-500 ${
-          authContext.loginErrorMsg !== '' ? 'block' : 'hidden'
+          authContext.authErrorMsg !== '' ? 'block' : 'hidden'
         }`}
       >
-        {authContext.loginErrorMsg}
+        {authContext.authErrorMsg}
       </p>
       <div className='flex flex-col items-center'>
         <input

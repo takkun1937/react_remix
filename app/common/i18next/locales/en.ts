@@ -22,5 +22,12 @@ export default {
         signup: "",
         login_msg: "",
         signup_msg: ""
+    },
+    error_msg: {
+        email_or_password_error: "",
+        failed_login: "",
+        email_already_in_use: "",
+        failed_signup: "",
+        auth_error: ""
     }
 }

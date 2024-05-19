@@ -1,9 +1,8 @@
-import { JSX, useRef } from 'react';
+import { FormEvent, JSX, useContext, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ROUTE_PATH } from '~/common/constants/constants';
 import { Button } from '~/components/elements/Button';
-import { auth } from '~/lib/firebase';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { AuthContext } from '../providers/authProvider';
 
 /**
  * 新規登録フォームのコンポーネント
@@ -11,24 +10,26 @@ import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
  */
 export const SignUpForm = (): JSX.Element => {
   const { t } = useTranslation();
+  const authContext = useContext(AuthContext);
   const usernameInputRef = useRef<HTMLInputElement>(null);
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
-  const handleSignUp = async (e: { preventDefault: () => void }) => {
+  // 新規登録押下時
+  const handleSignUp = async (e: FormEvent) => {
     e.preventDefault();
+
     if (emailInputRef.current && passwordInputRef.current) {
-      await createUserWithEmailAndPassword(
-        auth,
-        emailInputRef.current.value,
-        passwordInputRef.current.value
-      )
-        .then((userCredential) => {
-          console.log(userCredential);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      try {
+        const idToken = await authContext.signUp(
+          emailInputRef.current.value,
+          passwordInputRef.current.value
+        );
+
+        idToken && authContext.getAuthInfo(idToken);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -38,6 +39,13 @@ export const SignUpForm = (): JSX.Element => {
         'main.welcome_msg'
       )}`}</p>
       <p className='my-6 text-xl text-gray-500'>{`${t('main.signup_lead')}`}</p>
+      <p
+        className={`p-4 rounded border bg-red-200 text-red-500 ${
+          authContext.authErrorMsg !== '' ? 'block' : 'hidden'
+        }`}
+      >
+        {authContext.authErrorMsg}
+      </p>
       <div className='flex flex-col items-center'>
         <input
           ref={usernameInputRef}

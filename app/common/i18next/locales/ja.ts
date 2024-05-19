@@ -24,7 +24,10 @@ export default {
         signup_msg: "に登録"
     },
     error_msg: {
-        email_or_password_error: "メールアドレスかパスワードが間違っています",
+        email_or_password_error: "メールアドレスかパスワードが間違っています。",
         failed_login: "ログインに失敗しました。もう一度お試しください。",
+        email_already_in_use: "メールアドレスはすでに存在します。",
+        failed_signup: "新規登録に失敗しました。もう一度お試しください。",
+        auth_error: "ユーザー情報の取得に失敗しました。再度ログインをお試しください。"
     }
 }

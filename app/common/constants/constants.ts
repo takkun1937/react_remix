@@ -25,6 +25,14 @@ export const STATUS_CODE = {
 } as const;
 
 /**
+ * Firebaseのエラーコード
+ */
+export enum FirebaseErrorCode {
+  INVALID_LOGIN_CREDENTIALS = "auth/invalid-credential",
+  EMAIL_EXISTS = "auth/email-already-in-use"
+}
+
+/**
  * Editor選択可能言語オプション
  */
 export const languageOptions = [
