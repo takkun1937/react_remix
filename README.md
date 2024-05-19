@@ -65,3 +65,4 @@
 - [React Rnd](https://github.com/bokuweb/react-rnd)
 - [Firebase（認証機能）](https://firebase.google.com/?hl=ja)
 - [dotenv](https://github.com/motdotla/dotenv#readme)
+- [Firebase Admin SDK](https://firebase.google.com/docs/admin/setup?hl=ja)

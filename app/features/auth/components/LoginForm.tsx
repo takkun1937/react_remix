@@ -1,9 +1,8 @@
-import { JSX, useRef } from 'react';
+import { FormEvent, JSX, useContext, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ROUTE_PATH } from '~/common/constants/constants';
 import { Button } from '~/components/elements/Button';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '~/lib/firebase';
+import { AuthContext } from '../providers/authProvider';
 
 /**
  * ログインフォームのコンポーネント
@@ -11,24 +10,25 @@ import { auth } from '~/lib/firebase';
  */
 export const LoginForm = (): JSX.Element => {
   const { t } = useTranslation();
-  const usernameEmailInputRef = useRef<HTMLInputElement>(null);
+  const authContext = useContext(AuthContext);
+  const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
-  const handleLogin = async (e: { preventDefault: () => void }) => {
+  // ログインボタン押下時
+  const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (usernameEmailInputRef.current && passwordInputRef.current) {
-      await signInWithEmailAndPassword(
-        auth,
-        usernameEmailInputRef.current.value,
-        passwordInputRef.current.value
-      )
-        .then((userCredential) => {
-          console.log(userCredential);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    if (emailInputRef.current && passwordInputRef.current) {
+      try {
+        const idToken = await authContext.login(
+          emailInputRef.current.value,
+          passwordInputRef.current.value
+        );
+
+        idToken && authContext.getAuthInfo(idToken);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -38,11 +38,18 @@ export const LoginForm = (): JSX.Element => {
         'main.login_msg'
       )}`}</p>
       <p className='my-6 text-xl text-gray-500'>{`${t('main.login_lead')}`}</p>
+      <p
+        className={`p-4 rounded border bg-red-200 text-red-500 ${
+          authContext.loginErrorMsg !== '' ? 'block' : 'hidden'
+        }`}
+      >
+        {authContext.loginErrorMsg}
+      </p>
       <div className='flex flex-col items-center'>
         <input
-          ref={usernameEmailInputRef}
-          type='text'
-          placeholder={`${t('main.placeholder_username_email')}`}
+          ref={emailInputRef}
+          type='email'
+          placeholder={`${t('main.placeholder_email')}`}
           autoFocus={true}
           required
           className='w-96 mt-2.5 px-4 py-1.5 border border-gray-400 border-solid rounded text-base focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent'

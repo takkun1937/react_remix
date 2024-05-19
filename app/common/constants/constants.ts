@@ -3,10 +3,26 @@
  */
 export enum ROUTE_PATH {
     ROOT = '/',
-    REGISTER_WORK = '/register-work',
+    POST_TASK = '/post-task',
     LOGIN = '/login',
     SIGNUP = '/signup'
 }
+
+/**
+ * リクエストパス
+ */
+export enum REQUEST_PATH {
+  API_AUTH = '/api/auth'
+}
+
+/**
+ * ステータスコード
+ */
+export const STATUS_CODE = {
+  OK: { statusCode: 200, msg: 'OK' },
+  UNAUTHORIZED: { statusCode: 401, msg: 'Unauthorized' },
+  INTERNAL_SERVER_ERROR: { statusCode: 500, msg: 'Internal Server Error' },
+} as const;
 
 /**
  * Editor選択可能言語オプション

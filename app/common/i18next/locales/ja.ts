@@ -13,7 +13,6 @@ export default {
         login_msg: "にログイン",
         signup_lead: "新規登録(無料)して利用を開始しましょう",
         login_lead: "ログインして利用を開始しましょう",
-        placeholder_username_email: "ユーザー名 または メールアドレス",
         placeholder_username: "ユーザー名",
         placeholder_email: "メールアドレス",
         placeholder_password: "パスワード",
@@ -23,5 +22,9 @@ export default {
         signup: "新規登録",
         login_msg: "にログイン",
         signup_msg: "に登録"
+    },
+    error_msg: {
+        email_or_password_error: "メールアドレスかパスワードが間違っています",
+        failed_login: "ログインに失敗しました。もう一度お試しください。",
     }
 }

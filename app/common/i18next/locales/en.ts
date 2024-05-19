@@ -13,7 +13,6 @@ export default {
         login_msg: "",
         signup_lead: "",
         login_lead: "",
-        placeholder_username_email: "",
         placeholder_username: "",
         placeholder_email: "",
         placeholder_password: "",
