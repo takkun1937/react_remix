@@ -1,8 +1,9 @@
-import { FormEvent, JSX, useContext, useRef } from 'react';
+import { FormEvent, JSX, useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ROUTE_PATH } from '~/common/constants/constants';
 import { Button } from '~/components/elements/Button';
 import { AuthContext } from '../providers/authProvider';
+import { validateEmail, validatePassword } from '~/util/validation';
 
 /**
  * ログインフォームのコンポーネント
@@ -13,6 +14,9 @@ export const LoginForm = (): JSX.Element => {
   const authContext = useContext(AuthContext);
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
+  const [emailValidateError, setEmailValidateError] = useState<string>('');
+  const [passwordValidateError, setPasswordValidateError] =
+    useState<string>('');
 
   // ログインボタン押下時
   const handleLogin = async (e: FormEvent) => {
@@ -20,6 +24,21 @@ export const LoginForm = (): JSX.Element => {
 
     if (emailInputRef.current && passwordInputRef.current) {
       try {
+        const isValidateEmail = validateEmail(emailInputRef.current.value);
+        const isValidatePassword = validatePassword(
+          passwordInputRef.current.value
+        );
+
+        if (!isValidateEmail || !isValidatePassword) {
+          isValidateEmail
+            ? setEmailValidateError('')
+            : setEmailValidateError(t('error_msg.invalid_email'));
+          isValidatePassword
+            ? setPasswordValidateError('')
+            : setPasswordValidateError(t('error_msg.invalid_password'));
+          return;
+        }
+
         const idToken = await authContext.login(
           emailInputRef.current.value,
           passwordInputRef.current.value
@@ -54,6 +73,7 @@ export const LoginForm = (): JSX.Element => {
           required
           className='w-96 mt-2.5 px-4 py-1.5 border border-gray-400 border-solid rounded text-base focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent'
         />
+        <p className='w-96 mt-2.5 text-xs text-red-600'>{emailValidateError}</p>
         <input
           ref={passwordInputRef}
           type='password'
@@ -61,6 +81,9 @@ export const LoginForm = (): JSX.Element => {
           required
           className='w-96 mt-2.5 px-4 py-1.5 border border-gray-400 border-solid rounded text-base focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent'
         />
+        <p className='w-96 mt-2.5 text-xs text-red-600'>
+          {passwordValidateError}
+        </p>
         <Button
           type='submit'
           title={`${t('service_name')} ${t('button.login_msg')}`}

@@ -1,8 +1,13 @@
-import { FormEvent, JSX, useContext, useRef } from 'react';
+import { FormEvent, JSX, useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ROUTE_PATH } from '~/common/constants/constants';
 import { Button } from '~/components/elements/Button';
 import { AuthContext } from '../providers/authProvider';
+import {
+  validateEmail,
+  validatePassword,
+  validateUsername,
+} from '~/util/validation';
 
 /**
  * 新規登録フォームのコンポーネント
@@ -14,13 +19,43 @@ export const SignUpForm = (): JSX.Element => {
   const usernameInputRef = useRef<HTMLInputElement>(null);
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
+  const [usernameValidateError, setUsernameValidateError] =
+    useState<string>('');
+  const [emailValidateError, setEmailValidateError] = useState<string>('');
+  const [passwordValidateError, setPasswordValidateError] =
+    useState<string>('');
 
   // 新規登録押下時
   const handleSignUp = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (emailInputRef.current && passwordInputRef.current) {
+    if (
+      usernameInputRef.current &&
+      emailInputRef.current &&
+      passwordInputRef.current
+    ) {
       try {
+        const isValidateUsername = validateUsername(
+          usernameInputRef.current.value
+        );
+        const isValidateEmail = validateEmail(emailInputRef.current.value);
+        const isValidatePassword = validatePassword(
+          passwordInputRef.current.value
+        );
+
+        if (!isValidateUsername || !isValidateEmail || !isValidatePassword) {
+          isValidateUsername
+            ? setUsernameValidateError('')
+            : setUsernameValidateError(t('error_msg.invalid_username'));
+          isValidateEmail
+            ? setEmailValidateError('')
+            : setEmailValidateError(t('error_msg.invalid_email'));
+          isValidatePassword
+            ? setPasswordValidateError('')
+            : setPasswordValidateError(t('error_msg.invalid_password'));
+          return;
+        }
+
         const idToken = await authContext.signUp(
           emailInputRef.current.value,
           passwordInputRef.current.value
@@ -55,6 +90,9 @@ export const SignUpForm = (): JSX.Element => {
           required
           className='w-96 mt-2.5 px-4 py-1.5 border border-gray-400 border-solid rounded text-base focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent'
         />
+        <p className='w-96 mt-2.5 text-xs text-red-600'>
+          {usernameValidateError}
+        </p>
         <input
           ref={emailInputRef}
           type='email'
@@ -62,6 +100,7 @@ export const SignUpForm = (): JSX.Element => {
           required
           className='w-96 mt-2.5 px-4 py-1.5 border border-gray-400 border-solid rounded text-base focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent'
         />
+        <p className='w-96 mt-2.5 text-xs text-red-600'>{emailValidateError}</p>
         <input
           ref={passwordInputRef}
           type='password'
@@ -69,6 +108,9 @@ export const SignUpForm = (): JSX.Element => {
           required
           className='w-96 mt-2.5 px-4 py-1.5 border border-gray-400 border-solid rounded text-base focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent'
         />
+        <p className='w-96 mt-2.5 text-xs text-red-600'>
+          {passwordValidateError}
+        </p>
         <Button
           title={`${t('service_name')} ${t('button.signup_msg')}`}
           type='submit'

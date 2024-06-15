@@ -28,6 +28,9 @@ export default {
         failed_login: "",
         email_already_in_use: "",
         failed_signup: "",
-        auth_error: ""
+        auth_error: "",
+        invalid_username: "",
+        invalid_email: "",
+        invalid_password: ""
     }
 }
