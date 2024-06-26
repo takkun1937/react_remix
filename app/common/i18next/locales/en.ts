@@ -6,7 +6,7 @@ export default {
     },
     header: {
         work_space: "",
-        register_work: ""
+        task_registration: ""
     },
     main: {
         welcome_msg: "",
@@ -19,6 +19,7 @@ export default {
     },
     button: {
         login: "",
+        logout: "",
         signup: "",
         login_msg: "",
         signup_msg: ""

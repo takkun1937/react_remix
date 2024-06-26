@@ -56,10 +56,10 @@ export const useAuth = (): AuthContextType => {
   }
 
   /**
-  * 認証情報取得
+  * ログインユーザー情報取得
   * @param idToken IDトークン
   */
-  const getAuthInfo = (idToken: string) => {
+  const getAuthLoginInfo = (idToken: string) => {
     axios.get(REQUEST_PATH.API_AUTH, {
       headers: {
         Authorization: `Bearer ${idToken}`
@@ -76,10 +76,37 @@ export const useAuth = (): AuthContextType => {
     });
   }
 
+  /**
+  * 新規登録ユーザー情報登録
+  * @param idToken IDトークン
+  * @param userName ユーザー名
+  */
+  const saveAuthRegisterInfo = (idToken: string, userName: string) => {
+    axios.post(REQUEST_PATH.API_AUTH,
+      {
+        userName: userName
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${idToken}`
+        }
+    }).then((response) => {
+      console.log(response);
+      if (response.status === STATUS_CODE.OK.statusCode) {
+        console.log(response.data);
+        // TODO: ローカルストレージに保存
+      }
+    }).catch((error) => {
+      setAuthErrorMsg(t('error_msg.auth_error'));
+      throw error;
+    });
+  }
+
   return {
       authErrorMsg,
       login,
       signUp,
-      getAuthInfo
+      getAuthLoginInfo,
+      saveAuthRegisterInfo
   }
 }

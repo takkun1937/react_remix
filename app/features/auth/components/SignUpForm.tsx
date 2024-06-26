@@ -8,6 +8,7 @@ import {
   validatePassword,
   validateUsername,
 } from '~/util/validation';
+import { useNavigate } from '@remix-run/react';
 
 /**
  * 新規登録フォームのコンポーネント
@@ -24,6 +25,7 @@ export const SignUpForm = (): JSX.Element => {
   const [emailValidateError, setEmailValidateError] = useState<string>('');
   const [passwordValidateError, setPasswordValidateError] =
     useState<string>('');
+  const navigate = useNavigate();
 
   // 新規登録押下時
   const handleSignUp = async (e: FormEvent) => {
@@ -61,7 +63,12 @@ export const SignUpForm = (): JSX.Element => {
           passwordInputRef.current.value
         );
 
-        idToken && authContext.getAuthInfo(idToken);
+        idToken &&
+          authContext.saveAuthRegisterInfo(
+            idToken,
+            usernameInputRef.current.value
+          );
+        navigate(ROUTE_PATH.ROOT);
       } catch (error) {
         console.log(error);
       }

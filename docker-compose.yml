@@ -16,3 +16,19 @@ services:
       - .:/root/app_client
     working_dir: /root/app_client
     user: root
+
+  # 開発用DB
+  app_db:
+    build:
+      context: .
+      dockerfile: ./db/Dockerfile
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: app_db
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - 3306:3306
+    restart: always
+    volumes:
+      - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf

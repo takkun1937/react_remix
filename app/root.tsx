@@ -2,7 +2,6 @@ import { LoaderFunctionArgs, json } from '@remix-run/node';
 import {
   Links,
   Meta,
-  Navigate,
   Outlet,
   Scripts,
   ScrollRestoration,
@@ -15,7 +14,6 @@ import i18nServer, {
 } from './common/i18next/modules/i18next.server';
 import { useChangeLanguage } from 'remix-i18next/react';
 import 'app/index.css';
-import { ROUTE_PATH } from './common/constants/constants';
 
 export const handle = { i18n: ['translation'] };
 
@@ -29,10 +27,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const loaderData = useRouteLoaderData<typeof loader>('root');
-  const location = useLocation();
-  // if (location.pathname === ROUTE_PATH.SIGNUP) {
-  //   children = <Navigate to={ROUTE_PATH.LOGIN}></Navigate>;
-  // }
 
   return (
     <html lang={loaderData?.locale ?? 'ja'}>

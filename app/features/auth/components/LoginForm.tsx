@@ -4,6 +4,7 @@ import { ROUTE_PATH } from '~/common/constants/constants';
 import { Button } from '~/components/elements/Button';
 import { AuthContext } from '../providers/authProvider';
 import { validateEmail, validatePassword } from '~/util/validation';
+import { useNavigate } from '@remix-run/react';
 
 /**
  * ログインフォームのコンポーネント
@@ -17,6 +18,7 @@ export const LoginForm = (): JSX.Element => {
   const [emailValidateError, setEmailValidateError] = useState<string>('');
   const [passwordValidateError, setPasswordValidateError] =
     useState<string>('');
+  const navigate = useNavigate();
 
   // ログインボタン押下時
   const handleLogin = async (e: FormEvent) => {
@@ -44,7 +46,8 @@ export const LoginForm = (): JSX.Element => {
           passwordInputRef.current.value
         );
 
-        idToken && authContext.getAuthInfo(idToken);
+        idToken && authContext.getAuthLoginInfo(idToken);
+        navigate(ROUTE_PATH.ROOT);
       } catch (error) {
         console.log(error);
       }

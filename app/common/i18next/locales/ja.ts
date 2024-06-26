@@ -6,7 +6,7 @@ export default {
     },
     header: {
         work_space: "ワークスペース",
-        register_work: "課題登録"
+        task_registration: "課題登録"
     },
     main: {
         welcome_msg: "へようこそ！",
@@ -19,6 +19,7 @@ export default {
     },
     button: {
         login: "ログイン",
+        logout: "ログアウト",
         signup: "新規登録",
         login_msg: "にログイン",
         signup_msg: "に登録"
