@@ -34,6 +34,7 @@
     "react-dom": "^18.2.0",
     "react-helmet-async": "^2.0.4",
     "react-i18next": "^14.1.0",
+    "react-markdown": "^9.0.1",
     "react-rnd": "^10.4.10",
     "remix-i18next": "^6.1.0"
   },

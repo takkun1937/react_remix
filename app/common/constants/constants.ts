@@ -3,7 +3,7 @@
  */
 export enum ROUTE_PATH {
   ROOT = '/',
-  TASK_REGISTRATION = '/task-registration',
+  POST = '/post',
   LOGIN = '/login',
   SIGNUP = '/signup',
 }

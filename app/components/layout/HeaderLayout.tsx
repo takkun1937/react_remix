@@ -5,6 +5,7 @@ import { ROUTE_PATH } from '~/common/constants/constants';
 import { Button } from '../elements/Button';
 import { useAuth } from '~/hooks/useAuth';
 import { auth } from '~/lib/firebase';
+import { userStorage } from '~/util/storage';
 
 /**
  * ヘッダーレイアウトのコンポーネント
@@ -47,17 +48,20 @@ export const HeaderLayout = (): JSX.Element => {
         ></Button>
         <div className='flex'>
           {authUser ? (
-            <Button
-              title={`${t('button.logout')}`}
-              className={{
-                bgColor: 'bg-white',
-                fontSize: 'text-base',
-                fontColor: 'text-green-700',
-                hoverColor: 'bg-gray-100',
-                props: 'border border-green-700 border-solid',
-              }}
-              onClick={logout}
-            ></Button>
+            <>
+              <Button
+                title={`${t('button.logout')}`}
+                className={{
+                  bgColor: 'bg-white',
+                  fontSize: 'text-base',
+                  fontColor: 'text-green-700',
+                  hoverColor: 'bg-gray-100',
+                  props: 'border border-green-700 border-solid',
+                }}
+                onClick={logout}
+              ></Button>
+              <p>{userStorage.get() && userStorage.get().userName}</p>
+            </>
           ) : (
             <>
               <Button
@@ -97,12 +101,12 @@ export const HeaderLayout = (): JSX.Element => {
         >{`${t('header.work_space')}`}</button>
         <button
           className={`h-10 px-4 pt-2 text-sm font-semibold ${
-            location.pathname === ROUTE_PATH.TASK_REGISTRATION
+            location.pathname === ROUTE_PATH.POST
               ? 'border-b-4 border-green-500 text-black'
               : 'text-gray-500 hover:text-black'
           }`}
-          onClick={() => navigate(ROUTE_PATH.TASK_REGISTRATION)}
-        >{`${t('header.task_registration')}`}</button>
+          onClick={() => navigate(ROUTE_PATH.POST)}
+        >{`${t('header.post')}`}</button>
       </div>
     </div>
   );
