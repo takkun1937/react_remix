@@ -43,12 +43,28 @@
 1. VSCode でリモート接続している状態で、以下のコマンドを実行する。
 
    ```shell-session
-   $ npm run build
+   // ビルドコマンド
+   $ npm run build:dev // development
+   $ npm run build:prd // production
+
+   // サーバー起動
    $ npm start
+
+   // アプリ起動（開発用）
+   $ npm run dev
    ```
 
 ## 4. リンク
 
 - [React Remix プロジェクト作成参考リンク](https://remix.run/docs/en/main/tutorials/jokes)
-- [ローカライズ処理](https://react.i18next.com/guides/quick-start)
+- [ローカライズ処理](https://github.com/sergiodxa/remix-i18next?tab=readme-ov-file)
 - [Helmet（head タグ）](https://www.npmjs.com/package/react-helmet-async)
+- [Tailwind CSS](https://tailwindcss.com/docs/guides/create-react-app)
+- [Monaco Editor](https://github.com/suren-atoyan/monaco-react#readme)
+- [axios](https://axios-http.com/docs/intro)
+- [React Rnd](https://github.com/bokuweb/react-rnd)
+- [Firebase（認証機能）](https://firebase.google.com/?hl=ja)
+- [dotenv](https://github.com/motdotla/dotenv#readme)
+- [Firebase Admin SDK](https://firebase.google.com/docs/admin/setup?hl=ja)
+- [Prisma](https://www.prisma.io/docs/getting-started)
+- [react-markdown](https://github.com/remarkjs/react-markdown#readme)

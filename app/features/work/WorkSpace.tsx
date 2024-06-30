@@ -11,7 +11,7 @@ export const WorkSpace = (): JSX.Element => {
     
     return (
         <ContentLayout title={`${t('title.work_space')}`}>
-            <h1>Hello World!</h1>
+            <div className="grow px-8 bg-gray-100"></div>
         </ContentLayout>
     );
 }
